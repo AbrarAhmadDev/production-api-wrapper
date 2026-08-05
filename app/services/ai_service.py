@@ -1,5 +1,12 @@
-def generate_text(prompt:str):
+from app.clients.gemini_client import GeminiClient
 
-    result = f"AI received: {prompt}"
+
+async def generate_text(prompt:str):
+
+    client = GeminiClient()
+
+
+    result = await client.generate(prompt)
+
 
     return result

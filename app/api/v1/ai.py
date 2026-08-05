@@ -1,9 +1,12 @@
 from fastapi import APIRouter
+from fastapi import Depends
 
 from app.schemas.request import GenerateRequest
 from app.schemas.response import GenerateResponse
 
 from app.services.ai_service import generate_text
+
+from app.core.security import verify_api_key
 
 
 router = APIRouter(
@@ -16,11 +19,14 @@ router = APIRouter(
     "/generate",
     response_model=GenerateResponse
 )
-def generate(
-    request: GenerateRequest
+async def generate(
+    request: GenerateRequest,
+    api_key=Depends(
+    verify_api_key
+    )
 ):
 
-    result = generate_text(
+    result = await generate_text(
         request.prompt
     )
 
