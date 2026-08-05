@@ -8,6 +8,9 @@ from app.services.ai_service import generate_text
 
 from app.core.security import verify_api_key
 
+from app.core.auth import get_current_user
+
+
 
 router = APIRouter(
     prefix="/api/v1",
@@ -19,17 +22,17 @@ router = APIRouter(
     "/generate",
     response_model=GenerateResponse
 )
+
 async def generate(
     request: GenerateRequest,
-    api_key=Depends(
-    verify_api_key
+    current_user = Depends(
+        get_current_user
     )
 ):
 
     result = await generate_text(
         request.prompt
     )
-
 
     return GenerateResponse(
         response=result,
