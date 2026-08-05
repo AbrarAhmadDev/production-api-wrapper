@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 
-from app.api.routes import health
-from app.api.routes import ai
+from app.api.v1 import health
+from app.api.v1 import ai
 
 app = FastAPI(
     title="Production API Wrapper",
