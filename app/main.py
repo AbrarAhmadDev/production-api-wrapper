@@ -3,6 +3,8 @@ from fastapi import FastAPI
 from app.api.v1 import health
 from app.api.v1 import ai
 
+from app.core.exceptions import APIException
+
 app = FastAPI(
     title="Production API Wrapper",
     version="1.0.0"
