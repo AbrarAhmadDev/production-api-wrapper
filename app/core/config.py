@@ -3,14 +3,22 @@ from pydantic_settings import BaseSettings
 
 class Settings(BaseSettings):
 
-    app_name: str = "Production API Wrapper"
+    APP_NAME: str = "Production API Wrapper"
 
-    version: str = "1.0.0"
+    VERSION: str = "1.0.0"
 
-    debug: bool = True
+    DEBUG: bool = True
 
+    GEMINI_API_KEY: str = ""
+
+    DATABASE_URL: str = ""
+
+    JWT_SECRET: str = ""
+
+    REDIS_URL: str = ""
 
     class Config:
+
         env_file = ".env"
 
 
